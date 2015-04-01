@@ -21,6 +21,7 @@ package com.northwindx.model;
 
 import java.util.List;
 
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.servlet.http.Cookie;
@@ -43,8 +44,10 @@ public class Login {
 	 * @return	the Customers object
 	 */
 	public static Customer getLoggedInUser() {
-		return null;
-		
+		ExternalContext context = (ExternalContext) FacesContext.getCurrentInstance().getExternalContext();
+		HttpServletRequest request = (HttpServletRequest) context.getRequest();
+		return currentLogged in;
+	}	
 
 	/**
 	 * Method overload for login(String, String, boolean).
@@ -53,7 +56,7 @@ public class Login {
 	 * @param password	the Password of the customer trying to log in
 	 * @return			a boolean that determines if the login was successful
 	 */
-	}
+	
 	public static boolean login(String username, String password) {
 		return login(username, password, false);
 	}
@@ -74,6 +77,10 @@ public class Login {
 	 * @return				a boolean that determines if the login was successful
 	 */
 	public static boolean login(String username, String password, boolean rememberMe) {
+		ExternalContext context = (ExternalContext) FacesContext.getCurrentInstance().getExternalContext();
+		HttpServletResponse response = (HttpServletResponse) context.getResponse();
+		
+		
 		return rememberMe;
 		
 	}
