@@ -51,8 +51,8 @@ public class ProductBean {
 		EntityManager em = PersistenceUtil.getEntityManager();
 		em.getTransaction().begin();
 
-		setProductList(em.createQuery("from Product where CategoryID = ?1", Product.class).setParameter(1, id).getResultList());
-		setCatName(em.createQuery("from Category where CategoryID = ?1", Category.class).setParameter(1, id).getSingleResult());
+		setProductList(em.createQuery("from Product p where p.categoryID = ?1", Product.class).setParameter(1, id).getResultList());
+		setCatName(em.createQuery("from Category c where c.categoryID = ?1", Category.class).setParameter(1, id).getSingleResult());
 
 		em.getTransaction().commit();
 	}

@@ -37,7 +37,7 @@ public class CategoriesBean {
 	public CategoriesBean() {
 		EntityManager em = PersistenceUtil.getEntityManager();
 		em.getTransaction().begin();
-		setCategoriesList(em.createQuery("from Category", Category.class).getResultList());
+		setCategoriesList(em.createQuery("SELECT c FROM Category c", Category.class).getResultList());
 		em.getTransaction().commit();
 	}
 
